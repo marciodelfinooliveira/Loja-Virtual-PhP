@@ -1,69 +1,31 @@
 <?php
-require 'src/conexao-bd.php';
-require 'Usuario.class.php';
 
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+define('IMAGE_PATH', 'assets/img/');
+require_once('src/conexao-bd.php');
 
-$usuario = Usuario::buscarPorId($_SESSION['idusuario']);
 
-$idusuario = $usuario->getId();
+if (isset($_GET['id'])) {
+    $iddolivro = $_GET['id'];
 
-$query = "SELECT livros.*, carrinho.quantidade FROM carrinho
-          JOIN livros ON carrinho.idlivro = livros.idlivro
-          WHERE carrinho.idusuario = :idusuario";
-$stmt = $pdo->prepare($query);
-$stmt->bindParam(':idusuario', $idusuario);
-$stmt->execute();
-$livrosNoCarrinho = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt = $pdo->prepare("SELECT * FROM livros WHERE idlivro = :id");
+    $stmt->bindParam(':id', $iddolivro);
+    $stmt->execute();
+    $livro = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if(isset($_POST['limparcarrinho'])) {
-  $queryDelete = "DELETE FROM carrinho WHERE idusuario = :idusuario";
-  $stmtDelete = $pdo->prepare($queryDelete);
-  $stmtDelete->bindParam(':idusuario', $idusuario);
-  $stmtDelete->execute();
+    if ($livro) {
 
-  header("Location: index.php");
-  exit();
-}
-
-if (isset($_POST['idlivro']) && isset($_POST['removerLivro'])) {
-  $idlivroRemover = $_POST['idlivro'];
-  $idusuario = $usuario->getId();
-
-  $queryVerificarQuantidade = "SELECT quantidade FROM carrinho WHERE idusuario = :idusuario AND idlivro = :idlivro";
-  $stmtVerificarQuantidade = $pdo->prepare($queryVerificarQuantidade);
-  $stmtVerificarQuantidade->bindParam(':idusuario', $idusuario);
-  $stmtVerificarQuantidade->bindParam(':idlivro', $idlivroRemover);
-  $stmtVerificarQuantidade->execute();
-
-  $quantidadeLivro = $stmtVerificarQuantidade->fetchColumn();
-
-  if ($quantidadeLivro > 1) {
-
-      $queryDiminuirQuantidade = "UPDATE carrinho SET quantidade = quantidade - 1 WHERE idusuario = :idusuario AND idlivro = :idlivro";
-      $stmtDiminuirQuantidade = $pdo->prepare($queryDiminuirQuantidade);
-      $stmtDiminuirQuantidade->bindParam(':idusuario', $idusuario);
-      $stmtDiminuirQuantidade->bindParam(':idlivro', $idlivroRemover);
-      $stmtDiminuirQuantidade->execute();
-  } else {
-
-      $queryRemoverLivro = "DELETE FROM carrinho WHERE idusuario = :idusuario AND idlivro = :idlivro";
-      $stmtRemoverLivro = $pdo->prepare($queryRemoverLivro);
-      $stmtRemoverLivro->bindParam(':idusuario', $idusuario);
-      $stmtRemoverLivro->bindParam(':idlivro', $idlivroRemover);
-      $stmtRemoverLivro->execute();
-  }
-
-  header('Location: carrinho.php');
-  exit();
+    } else {
+        echo "Livro não encontrado.";
+    }
+} else {
+    echo "ID do livro não fornecido.";
 }
 
 ?>
- 
+
 <!doctype html>
 <html lang="pt-br" data-bs-theme="auto">
+
   <head><script src="../assets/js/color-modes.js"></script>
 
     <meta charset="utf-8">
@@ -126,6 +88,8 @@ if (isset($_POST['idlivro']) && isset($_POST['removerLivro'])) {
       </ul>
     </div>
 
+    
+
 <header class="navbar navbar-dark bg-dark shadow-sm">
   <div class="container">
     <a href="index.php" class="navbar-brand d-flex align-items-center">
@@ -169,62 +133,78 @@ if (isset($_POST['idlivro']) && isset($_POST['removerLivro'])) {
 
 <main>
 
-<section>
+<style>
+    /* Estilo para os cards */
+    .card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center; /* Alinhar conteúdo ao centro */
+        border: none; /* Remover a borda */
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 0;
+        margin-bottom: 10px;
+        width: 70%; /* Defina o tamanho desejado para o card */
+    }
 
-    <div class="album py-5 bg-body-tertiary">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="list-group" style="max-height: 300px; overflow-y: auto;">
-                        <div style="display: flex; align-items: center; padding: 5px;">
-                            <h6 style="flex: 2; margin-bottom: 0;">Título</h6>
-                            <h6 style="flex: 2; margin-bottom: 0;">Autor</h6>
-                            <h6 style="flex: 1; margin-bottom: 0;">Preço</h6>
-                            <h6 style="flex: 1; margin-bottom: 0;">Quantidade</h6>
-                        </div>
-                        <?php foreach($livrosNoCarrinho as $livro): ?>
-                            <div class="list-group-item" style="display: flex; align-items: center; padding: 10px;">
-                                <h5 style="flex: 2; margin-bottom: 0;"><?= $livro["nomelivro"]; ?></h5>
-                                <p style="flex: 2; margin-bottom: 0;"><?= $livro["nomeautor"]; ?></p>
-                                <p style="flex: 1; margin-bottom: 0;"><?= "R$ " . $livro["preco"]; ?></p>
-                                <p style="flex: 1; margin-bottom: 0;"><?= $livro["quantidade"]; ?></p>
-                                <form method="post">
-                                    <input type="hidden" name="idlivro" value="<?= $livro['idlivro']; ?>">
-                                    <button type="submit" name="removerLivro" class="btn btn-sm btn-outline-danger">Remover</button>
-                                </form>
-                            </div>
-                        <?php endforeach ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    /* Estilo para a imagem do card */
+    .card-img-top {
+        width: 100%;
+        height: auto;
+        object-fit: cover; /* Ajusta a imagem para preencher o container, mantendo a proporção */
+        border-radius: 8px;
+    }
 
+    /* Estilo para o card-body (área das informações) */
+    .card-body {
+        padding: 10px;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.8); /* Fundo semitransparente para destacar as informações */
+        width: 100%; /* Largura total do card */
+        position: absolute;
+        bottom: 0; /* Alinhar ao final do card */
+        box-sizing: border-box;
+    }
+
+    /* Estilo para o preço */
+    .card-price {
+        font-weight: bold;
+        font-size: 14px;
+        margin-right: 5px;
+        margin-top: 5px;
+    }
+
+    /* Estilo para o botão 'Detalhes' */
+    .btn-details {
+        font-size: 14px;
+        margin-left: 5px;
+        margin-bottom: 5px;
+    }
+</style>
+
+    <br>
     <div class="container">
         <div class="row">
-            <div class="col">
-                <?php
-                $totalPagar = 0;
-                foreach ($livrosNoCarrinho as $livro) {
-                    $totalPagar += $livro['preco'] * $livro['quantidade'];
-                }
-                ?>
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <p style="font-size: 1.5em; font-weight: bold; color: red;">Total a Pagar: R$ <?= $totalPagar; ?></p>
-                            <form method="post">
-                                <button type="submit" name="limparcarrinho" class="btn btn-danger mt-3">Limpar Carrinho</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>  
+            <div class="col-md-4">
+                <img src="<?= $livro['imagem']; ?>" class="card-img-top" alt="Capa do Livro">
+            </div>
+            <div class="col-md-6">
+                <h2><?= $livro['nomelivro']; ?></h2>
+                <p>Autor: <?= $livro['nomeautor']; ?></p>
+                <p>Descrição: <?= $livro['descricao']; ?></p>
+                <p>Preço: R$ <?= $livro['preco']; ?></p>
+
+                <form action="carrinhobd.php" method="post">
+                    <input type="hidden" name="idlivro" value="<?= $livro['idlivro']; ?>">
+                    <label for="quantidade">Quantidade:</label>
+                    <input type="number" id="quantidade" name="quantidade" value="1" min="1" max="10">
+                    <button type="submit" class="btn btn-sm btn-outline-secondary btn-add-cart">Adicionar ao Carrinho</button>
+                </form>
+
             </div>
         </div>
     </div>
-
-</section>
-
 
 </main>
 
@@ -233,7 +213,7 @@ if (isset($_POST['idlivro']) && isset($_POST['removerLivro'])) {
     <p class="float-end mb-1">
       <a href="#">Voltar ao Topo</a>
     </p>
-    <p class="mb-1">Todos os direitos reservados aos desenvolvedores do Grupo 4 - Programaçao Web - Análise e Desenvolvimento de Sistemas - P1 </p>
+    <p class="mb-1">Todos os direitos reservados a Márcio Delfino</p>
     
   </div>
 </footer>

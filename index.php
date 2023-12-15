@@ -10,6 +10,7 @@ $livros = $pdo->query($sql, null);
 
 <!doctype html>
 <html lang="pt-br" data-bs-theme="auto">
+
   <head><script src="../assets/js/color-modes.js"></script>
 
     <meta charset="utf-8">
@@ -117,39 +118,72 @@ $livros = $pdo->query($sql, null);
 
 <main>
 
+<style>
+    /* Estilo para os cards */
+    .card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center; /* Alinhar conteúdo ao centro */
+        border: none; /* Remover a borda */
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 0;
+        margin-bottom: 10px;
+        width: 70%; /* Defina o tamanho desejado para o card */
+    }
+
+    /* Estilo para a imagem do card */
+    .card-img-top {
+        width: 100%;
+        height: auto;
+        object-fit: cover; /* Ajusta a imagem para preencher o container, mantendo a proporção */
+        border-radius: 8px;
+    }
+
+    /* Estilo para o card-body (área das informações) */
+    .card-body {
+        padding: 10px;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.8); /* Fundo semitransparente para destacar as informações */
+        width: 100%; /* Largura total do card */
+        position: absolute;
+        bottom: 0; /* Alinhar ao final do card */
+        box-sizing: border-box;
+    }
+
+    /* Estilo para o preço */
+    .card-price {
+        font-weight: bold;
+        font-size: 14px;
+        margin-right: 5px;
+        margin-top: 5px;
+    }
+
+    /* Estilo para o botão 'Detalhes' */
+    .btn-details {
+        font-size: 14px;
+        margin-left: 5px;
+        margin-bottom: 5px;
+    }
+</style>
+
+
   <div class="album py-5 bg-body-tertiary">
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        
+
         <?php foreach($livros as $livro): ?>
-          <div class="col">
-              <div class="card shadow-sm">
-                  <div class="card-header">
-                      <h5 class="card-title text-center"><?= $livro["nomelivro"]; ?></h5>
-                  </div>
-                  <img src="<?=$livro["imagem"];?>" class="card-img-top" width="80" height="500">
-                  <div class="card-body">
-                      <p class="card-text"><?= $livro["descricao"]; ?></p>
-                      <p class="text-body-secondary"><?= $livro["nomeautor"]; ?></p>
-                      <div class="d-flex justify-content-between align-items-center">
-                          <?php if (session_status() == PHP_SESSION_NONE) {
-                              session_start();
-                          } ?>
-                          <?php if (isset($_SESSION['idusuario'])): ?>
-                              <form action="carrinhobd.php" method="post">
-                                  <input type="hidden" name="idlivro" value="<?= $livro['idlivro']; ?>">
-                                  <button type="submit" class="btn btn-sm btn-outline-secondary" name="adicionar_carrinho">Adicionar ao Carrinho</button>
-                              </form>
-                          <?php else: ?>
-                              <a href="login.php">
-                                  <button type="button" class="btn btn-sm btn-outline-secondary">Comprar</button>
-                              </a>
-                          <?php endif; ?>
-                          <small class="text-body-secondary"><?= "R$ " . $livro["preco"]; ?></small>
-                          <small class="text-body-secondary"><?= $livro["tema"]; ?></small>
-                      </div>
-                  </div>
-              </div>
+          <div class="col-md-3">
+            <div class="card shadow-sm">
+                <a href="detalhes_livro.php?id=<?= $livro['idlivro']; ?>" style="text-decoration: none; color: inherit;">
+                    <img src="<?= $livro["imagem"]; ?>" class="card-img-top">
+                    <div class="card-body">
+                        <span class="card-price"><?= "R$ " . $livro["preco"]; ?></span>
+                        <a href="detalheslivro.php?id=<?= $livro['idlivro']; ?>" class="btn btn-sm btn-outline-secondary btn-details">Detalhes</a>
+                    </div>
+                </a>
+            </div>
           </div>
         <?php endforeach; ?>
 
@@ -164,7 +198,7 @@ $livros = $pdo->query($sql, null);
     <p class="float-end mb-1">
       <a href="#">Voltar ao Topo</a>
     </p>
-    <p class="mb-1">Todos os direitos reservados aos desenvolvedores do Grupo 4 - Programaçao Web - Análise e Desenvolvimento de Sistemas - P1 </p>
+    <p class="mb-1">Todos os direitos reservados a Márcio Delfino</p>
     
   </div>
 </footer>

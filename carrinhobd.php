@@ -9,9 +9,9 @@ if (session_status() == PHP_SESSION_NONE) {
 
 $usuario = Usuario::buscarPorId($_SESSION['idusuario']);
 
-if (isset($_POST['idlivro'])) {
-
+if (isset($_POST['idlivro']) && isset($_POST['quantidade'])) {
     $idlivro = $_POST['idlivro'];
+    $quantidade = $_POST['quantidade'];
     $idusuario = $usuario->getId();
 
     $queryVerificar = "SELECT * FROM carrinho WHERE idusuario = :idusuario AND idlivro = :idlivro";
@@ -23,28 +23,23 @@ if (isset($_POST['idlivro'])) {
     $livroNoCarrinho = $stmtVerificar->fetch();
 
     if ($livroNoCarrinho) {
-       
-        $queryAtualizar = "UPDATE carrinho SET quantidade = quantidade + 1 WHERE idusuario = :idusuario AND idlivro = :idlivro";
+        $queryAtualizar = "UPDATE carrinho SET quantidade = quantidade + :quantidade WHERE idusuario = :idusuario AND idlivro = :idlivro";
         $stmtAtualizar = $pdo->prepare($queryAtualizar);
         $stmtAtualizar->bindParam(':idusuario', $idusuario);
         $stmtAtualizar->bindParam(':idlivro', $idlivro);
+        $stmtAtualizar->bindParam(':quantidade', $quantidade);
         $stmtAtualizar->execute();
-
-        header('Location: index.php');
     } else {
-        
-        $queryAdicionar = "INSERT INTO carrinho (idusuario, idlivro, quantidade) VALUES (:idusuario, :idlivro, 1)";
+        $queryAdicionar = "INSERT INTO carrinho (idusuario, idlivro, quantidade) VALUES (:idusuario, :idlivro, :quantidade)";
         $stmtAdicionar = $pdo->prepare($queryAdicionar);
         $stmtAdicionar->bindParam(':idusuario', $idusuario);
         $stmtAdicionar->bindParam(':idlivro', $idlivro);
+        $stmtAdicionar->bindParam(':quantidade', $quantidade);
         $stmtAdicionar->execute();
-
-        header('Location: index.php');
     }
+    header('Location: index.php');
 } else {
-
-    echo "ID do livro não foi fornecido!";
+    echo "ID do livro ou quantidade não foram fornecidos!";
 }
-
 ?>
 
