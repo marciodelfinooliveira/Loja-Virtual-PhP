@@ -231,7 +231,7 @@ $contatos = $pdo->query($sql3, null);
     <p class="float-end mb-1">
       <a href="#">Voltar ao Topo</a>
     </p>
-    <p class="mb-1">Todos os direitos reservados aos desenvolvedores do Grupo 4 - Programaçao Web - Análise e Desenvolvimento de Sistemas - P1 </p>
+    <p class="mb-1">Todos os direitos reservados a Márcio Delfino</p>
     
   </div>
 </footer>

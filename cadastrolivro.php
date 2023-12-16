@@ -14,6 +14,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 ?>
 <!DOCTYPE html>
+
 <html lang="pt-br" data-bs-theme="auto">
 
   <head><script src="../assets/js/color-modes.js"></script>
@@ -24,7 +25,6 @@ if (session_status() == PHP_SESSION_NONE) {
     <link href="assets/dist/css/style.css" rel="stylesheet">
   </head>
 
-<body>
 
   <header class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container">
@@ -67,58 +67,57 @@ if (session_status() == PHP_SESSION_NONE) {
     </div>
   </header>
 
-<main>
+  <main>
 
+    <section>
 
-    </style>
-</head>
-<body>
-    <div class="container">
-        <br><h2>Adicionar Livro</h2>
+      <div class="container">
+        
+        <br>
+        <h2>Adicionar Livro</h2>
+
         <form action="cadastrolivrobd.php" method="post" enctype="multipart/form-data">
+
             <div class="mb-3">
               <label for="nomelivro" class="form-label">Nome do Livro:</label>
               <input type="text" name="nomelivro" class="form-control" required>
             </div>
+
             <div class="mb-3">
               <label for="nomeautor" class="form-label">Nome do Autor:</label>
               <input type="text" name="nomeautor" class="form-control" required>
             </div>
+            
             <div class="mb-3">
               <label for="descricao" class="form-label">Descrição:</label>
               <textarea name="descricao" class="form-control" required></textarea>
             </div>
+
             <div class="mb-3">
               <label for="preco" class="form-label">Preço:</label>
               <input type="number" name="preco" step="0.01" class="form-control" required>
             </div>
+
             <div class="mb-3">
               <label for="tema" class="form-label">Tema:</label>
               <input type="text" name="tema" class="form-control" required>
             </div>
+
             <div class="mb-3">
               <label for="imagem" class="form-label">Capa do Livro:</label>
               <input type="file" name="imagem" class="form-control" accept="image/*" required>
             </div>
+
             <div class="mb-3">
               <input type="submit" value="Adicionar Livro" class="btn btn-primary">
             </div>
+
         </form>
-    </div>
-</body>
-</html>
-        
-
-    
-
-</form>
-
-          </form>
-        </div>  
+          
       </div>
+
     </section>
 
-</main>
+  </main>
 
-</body>
 </html>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 21-Nov-2023 às 22:43
+-- Tempo de geração: 16-Dez-2023 às 23:41
 -- Versão do servidor: 10.4.28-MariaDB
 -- versão do PHP: 8.2.4
 
@@ -34,6 +34,13 @@ CREATE TABLE `carrinho` (
   `quantidade` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Extraindo dados da tabela `carrinho`
+--
+
+INSERT INTO `carrinho` (`idcarrinho`, `idusuario`, `idlivro`, `quantidade`) VALUES
+(50, NULL, 24, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -52,7 +59,7 @@ CREATE TABLE `contatos` (
 --
 
 INSERT INTO `contatos` (`idcontato`, `nomecontato`, `emailcontato`, `mensagem`) VALUES
-(5, 'Rafael Cleber', 'rafael@gmail.com', 'Onde eu Pago minhas compras ?');
+(6, 'Márcio Delfino', 'marcio@user.com', 'Bom dia !! Adorei o Site !!');
 
 -- --------------------------------------------------------
 
@@ -108,9 +115,7 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`idusuario`, `nomeusuario`, `email`, `senha`, `gerente`) VALUES
 (1, 'Admin', 'super@admin.com', '21232f297a57a5a743894a0e4a801fc3', 1),
-(11, 'Bob Espoja', 'esponjabob@gmail.com', '9f9d51bc70ef21ca5c14f307980a29d8', 0),
-(12, 'Márcio Delfino', 'marcio@gmail.com', '1b150854805cbe12194c8dbc55c900cd', 1),
-(13, 'Rafael Cleber', 'rafael@gmail.com', '9135d8523ad3da99d8a4eb83afac13d1', 0);
+(16, 'Márcio Delfino', 'marcio@user.com', '1b150854805cbe12194c8dbc55c900cd', 0);
 
 --
 -- Índices para tabelas despejadas
@@ -150,13 +155,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `carrinho`
 --
 ALTER TABLE `carrinho`
-  MODIFY `idcarrinho` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `idcarrinho` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT de tabela `contatos`
 --
 ALTER TABLE `contatos`
-  MODIFY `idcontato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idcontato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `livros`
@@ -168,7 +173,7 @@ ALTER TABLE `livros`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Restrições para despejos de tabelas

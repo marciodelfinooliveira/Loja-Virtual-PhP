@@ -31,8 +31,6 @@ if (isset($_GET['id'])) {
     <link href="assets/dist/css/style.css" rel="stylesheet">
     </head>
 
-<body>
-
     <header class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container">
         <a href="index.php" class="navbar-brand d-flex align-items-center">
@@ -77,25 +75,34 @@ if (isset($_GET['id'])) {
 <main>
 
     <section class="py-5 text-center container">
+
         <div class="row py-lg-3">
+
         <div class="col-lg-6 col-md-5 mx-auto">
 
             <p class="lead ">Editar usuário</p>
+
             <form action="editarusuariobd.php?id=<?= $usuario['idusuario']; ?>" method="POST" class="login-form">
+
             <div class="mb-3">
                 <label for="nomeusuario" class="form-label">Nome</label>
                 <input type="text" name="nomeusuario"  class="form-control" value="<?= $usuario['nomeusuario']; ?>" required>
             </div>
+
             <div class="mb-3">
                 <label for="email" class="form-label">Email:</label>
                 <input type="email" name="email" class="form-control" value="<?= $usuario['email']; ?>" required>
             </div>
+
             <div class="mb-3">
                 <label for="senha" class="form-label">Senha:</label>
                 <input type="password" name="senha"  class="form-control" value="<?= $usuario['senha']; ?>" required>
             </div>
+
             <div class="mb-3">
-            <label for="gerente" class="form-label">Tipo de Usuário:</label>
+                <label for="gerente" class="form-label">Tipo de Usuário:</label>
+            </div>
+
             <?php 
             if ($usuario['gerente'] == 1){
                 echo '
@@ -119,21 +126,19 @@ if (isset($_GET['id'])) {
                 </div>';
             }
             ?>
-            
-            
+                
             <div class="mb-3">
                 <button type="submit" class="btn btn-primary btn-sm">Confirmar</button>
             </div>
-            <div>
-            </div>
+
             <?php if(isset($error)){ echo "<p class='error'>$error</p>"; } ?>
 
             </form>
+
         </div>  
-        </div>
+
     </section>
 
 </main>
 
-</body>
 </html>
