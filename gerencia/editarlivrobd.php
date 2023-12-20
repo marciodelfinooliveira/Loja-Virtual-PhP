@@ -1,5 +1,5 @@
 <?php
-require_once('src/conexao-bd.php');
+require_once('../src/conexao-bd.php');
 
 if (isset($_GET['id'])) {
     $idlivro = $_GET['id'];
@@ -22,7 +22,7 @@ if (isset($_GET['id'])) {
                 $nomearquivo = $_FILES['novaimagem']['name'];
                 $caminhotemporario = $_FILES['novaimagem']['tmp_name'];
             
-                $target_dir = "assets/img/";
+                $target_dir = "../assets/img/";
                 $novocaminhoimagem = $target_dir . basename($nomearquivo);
             
                 $uploadOk = 1;
@@ -35,7 +35,7 @@ if (isset($_GET['id'])) {
                     $uploadOk = 0;
                 } else {
                     if (move_uploaded_file($caminhotemporario, $novocaminhoimagem)) {
-                        $nomearquivo_com_prefixo = 'assets/img/' . $nomearquivo;
+                        $nomearquivo_com_prefixo = '../assets/img/' . $nomearquivo;
             
                         $stmt = $pdo->prepare("UPDATE livros SET imagem = :imagem WHERE idlivro = :id");
                         $stmt->bindParam(':imagem', $nomearquivo_com_prefixo);

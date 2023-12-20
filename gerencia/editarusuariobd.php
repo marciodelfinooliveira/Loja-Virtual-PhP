@@ -1,5 +1,5 @@
 <?php
-require_once('src/conexao-bd.php');
+require_once('../src/conexao-bd.php');
 
 if (isset($_GET['id'])) {
     $idusuario = $_GET['id'];

@@ -66,7 +66,7 @@ if (session_status() == PHP_SESSION_NONE) {
                 <?php foreach ($livros as $livro): ?>
                     <div class="col-md-3">
                         <div class="card shadow-sm">
-                            <a href="detalhes_livro.php?id=<?= $livro['idlivro']; ?>" style="text-decoration: none; color: inherit;">
+                            <a href="detalheslivro.php?id=<?= $livro['idlivro']; ?>" style="text-decoration: none; color: inherit;">
                                 <img src="<?= $livro["imagem"]; ?>" class="card-img-top">
                                 <div class="card-body">
                                     <span class="card-price"><?= "R$ " . $livro["preco"]; ?></span>

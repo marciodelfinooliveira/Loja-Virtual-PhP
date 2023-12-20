@@ -8,7 +8,7 @@
         <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
         <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="assets/dist/css/style.css" rel="stylesheet">
+        <link href="../assets/dist/css/style.css" rel="stylesheet">
     </head>
 
 <body>
@@ -82,7 +82,7 @@
                 if ($_SESSION['gerente'] == 1) {
 
                 echo '
-                    <a href="admin.php" class="navbar-brand d-flex align-items-center">
+                    <a href="../gerencia/admin.php" class="navbar-brand d-flex align-items-center">
                     <strong>Canto das Palavras</strong>
                     </a>
                 ';
@@ -90,7 +90,7 @@
                 } else {
 
                 echo '
-                    <a href="index.php" class="navbar-brand d-flex align-items-center">
+                    <a href="../index.php" class="navbar-brand d-flex align-items-center">
                     <strong>Canto das Palavras</strong>
                     </a>
                     <form class="form-inline" action="buscar.php" method="GET">
@@ -106,7 +106,7 @@
             } else {
 
                 echo '
-                <a href="index.php" class="navbar-brand d-flex align-items-center">
+                <a href="../index.php" class="navbar-brand d-flex align-items-center">
                 <strong>Canto das Palavras</strong>
                 </a>
                 <form class="form-inline" action="buscar.php" method="GET">
@@ -136,7 +136,7 @@
                         <a class="nav-link btn btn-outline-light" href="cadastrousuarioadm.php">Adicionar Usuário</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-outline-light" href="logout.php">Logout</a>
+                        <a class="nav-link btn btn-outline-light" href="../logout.php">Logout</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link btn btn-outline-light" href="admin.php">Gerenciamento da Loja</a>

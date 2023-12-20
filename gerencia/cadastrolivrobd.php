@@ -1,7 +1,7 @@
 <?php
 
-require 'src/conexao-bd.php';
-require 'Usuario.class.php';
+require '../src/conexao-bd.php';
+require '../Usuario.class.php';
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $preco = $_POST["preco"];
     $tema = $_POST["tema"]; 
 
-    $target_dir = "assets/img/"; 
+    $target_dir = "../assets/img/"; 
     $target_file = $target_dir . basename($_FILES["imagem"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));

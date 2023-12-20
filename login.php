@@ -2,7 +2,7 @@
 
 define("IMAGE_PATH", "assets/img/");
 
-require_once('src/conexao-bd.php');
+require('src/conexao-bd.php');
 
 if(isset($_SESSION['login_error'])){
   $error = $_SESSION['login_error'];
@@ -15,7 +15,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 ?>
 
-<?php include 'shared/header.php'; ?>
+<?php include('shared/header.php'); ?>
 
 <main>
 

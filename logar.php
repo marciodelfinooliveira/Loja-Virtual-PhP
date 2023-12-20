@@ -2,8 +2,8 @@
 
 if(isset($_POST['email']) && !empty($_POST['email']) && isset($_POST['senha']) && !empty($_POST['senha'])){
 
-    require 'src/conexao-bd.php';
-    require 'Usuario.class.php';
+    require('src/conexao-bd.php');
+    require('Usuario.class.php');
 
     $u = new Usuario();    
     $login = addslashes($_POST['email']);   
@@ -18,7 +18,7 @@ if(isset($_POST['email']) && !empty($_POST['email']) && isset($_POST['senha']) &
             if($u->isgerente()){
                 
                 $_SESSION['login_success'] = "Bem Vindo !!";
-                header("Location: admin.php");
+                header("Location: ../gerencia/admin.php");
             } else {
 
                 $_SESSION['login_success'] = "Bem Vindo !!";

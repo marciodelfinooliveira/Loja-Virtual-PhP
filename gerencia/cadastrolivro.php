@@ -1,6 +1,6 @@
 <?php
 
-require_once('src/conexao-bd.php');
+require_once('../src/conexao-bd.php');
 
 if(isset($_SESSION['login_error'])){
   
@@ -15,7 +15,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 ?>
 
-<?php include 'shared/header.php'; ?>
+<?php include '../shared/header.php'; ?>
 
 <main>
 
@@ -70,4 +70,4 @@ if (session_status() == PHP_SESSION_NONE) {
 
 </main>
 
-<?php include 'shared/footer.php'; ?>
+<?php include '../shared/footer.php'; ?>
