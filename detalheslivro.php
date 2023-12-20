@@ -3,7 +3,6 @@
 define('IMAGE_PATH', 'assets/img/');
 require_once('src/conexao-bd.php');
 
-
 if (isset($_GET['id'])) {
     $iddolivro = $_GET['id'];
 
@@ -19,6 +18,10 @@ if (isset($_GET['id'])) {
     }
 } else {
     echo "ID do livro não fornecido.";
+}
+
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
 }
 
 ?>
@@ -98,9 +101,6 @@ if (isset($_GET['id'])) {
     </a>
     <ul class="nav">
       <?php
-      if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-      }
       if(isset($_SESSION['idusuario'])){
         echo '<li class="nav-item">
                 <a class="nav-link btn btn-outline-light" href="logout.php">Logout</a>
@@ -134,48 +134,39 @@ if (isset($_GET['id'])) {
 <main>
 
 <style>
-    /* Estilo para os cards */
     .card {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        align-items: center; /* Alinhar conteúdo ao centro */
-        border: none; /* Remover a borda */
+        align-items: center; 
+        border: none; 
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         padding: 0;
         margin-bottom: 10px;
-        width: 70%; /* Defina o tamanho desejado para o card */
+        width: 70%; 
     }
-
-    /* Estilo para a imagem do card */
     .card-img-top {
         width: 100%;
         height: auto;
-        object-fit: cover; /* Ajusta a imagem para preencher o container, mantendo a proporção */
+        object-fit: cover; 
         border-radius: 8px;
     }
-
-    /* Estilo para o card-body (área das informações) */
     .card-body {
         padding: 10px;
         text-align: center;
-        background-color: rgba(255, 255, 255, 0.8); /* Fundo semitransparente para destacar as informações */
-        width: 100%; /* Largura total do card */
+        background-color: rgba(255, 255, 255, 0.8); 
+        width: 100%; 
         position: absolute;
-        bottom: 0; /* Alinhar ao final do card */
+        bottom: 0; 
         box-sizing: border-box;
     }
-
-    /* Estilo para o preço */
     .card-price {
         font-weight: bold;
         font-size: 14px;
         margin-right: 5px;
         margin-top: 5px;
     }
-
-    /* Estilo para o botão 'Detalhes' */
     .btn-details {
         font-size: 14px;
         margin-left: 5px;
@@ -194,14 +185,14 @@ if (isset($_GET['id'])) {
                 <p>Autor: <?= $livro['nomeautor']; ?></p>
                 <p>Descrição: <?= $livro['descricao']; ?></p>
                 <p>Preço: R$ <?= $livro['preco']; ?></p>
-
-                <form action="carrinhobd.php" method="post">
-                    <input type="hidden" name="idlivro" value="<?= $livro['idlivro']; ?>">
-                    <label for="quantidade">Quantidade:</label>
-                    <input type="number" id="quantidade" name="quantidade" value="1" min="1" max="10">
-                    <button type="submit" class="btn btn-sm btn-outline-secondary btn-add-cart">Adicionar ao Carrinho</button>
+                <form action="<?php echo isset($_SESSION['idusuario']) ? 'carrinhobd.php' : 'login.php'; ?>" method="post">
+                  <input type="hidden" name="idlivro" value="<?= $livro['idlivro']; ?>">
+                  <label for="quantidade">Quantidade:</label>
+                  <input type="number" id="quantidade" name="quantidade" value="1" min="1" max="10">
+                  <button type="submit" class="btn btn-sm btn-outline-secondary btn-add-cart">
+                      <?= isset($_SESSION['idusuario']) ? 'Adicionar ao Carrinho' : 'Adicionar ao Carrinho'; ?>
+                  </button>
                 </form>
-
             </div>
         </div>
     </div>
