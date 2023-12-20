@@ -5,7 +5,6 @@ require 'Usuario.class.php';
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-// Processar os dados do formulário
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = $_POST["nomeusuario"];
@@ -13,7 +12,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $senha = $_POST["senha"];
     $gerente = $_POST["gerente"];
 
-    // Inserir dados no banco de dados
     $stmt = $pdo->prepare("INSERT INTO usuarios (nomeusuario, email, senha, gerente) VALUES (:nomeusuario, :email, :senha, :gerente)");
     $stmt->bindParam(':nomeusuario', $nome);
     $stmt->bindParam(':email', $email);
