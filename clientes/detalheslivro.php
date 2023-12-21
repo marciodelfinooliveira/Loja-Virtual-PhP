@@ -1,7 +1,7 @@
 <?php
 
 define('IMAGE_PATH', 'assets/img/');
-require_once('src/conexao-bd.php');
+require_once('../src/conexao-bd.php');
 
 if (isset($_GET['id'])) {
     $iddolivro = $_GET['id'];
@@ -26,8 +26,8 @@ if (session_status() == PHP_SESSION_NONE) {
 
 ?>
 
-<?php include 'shared/header.php'; ?>
-<link href="assets/dist/css/styles_detalheslivro.css" rel="stylesheet">
+<?php include '../shared/header.php'; ?>
+<link href="../assets/dist/css/styles_detalheslivro.css" rel="stylesheet">
 
 <main>
 
@@ -37,14 +37,14 @@ if (session_status() == PHP_SESSION_NONE) {
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <img src="<?= $livro['imagem']; ?>" class="card-img-top" alt="Capa do Livro">
+                <img src="<?= "../" .  $livro['imagem']; ?>" class="card-img-top" alt="Capa do Livro">
             </div>
             <div class="col-md-6">
                 <h2><?= $livro['nomelivro']; ?></h2>
                 <p>Autor: <?= $livro['nomeautor']; ?></p>
                 <p>Descrição: <?= $livro['descricao']; ?></p>
                 <p>Preço: R$ <?= $livro['preco']; ?></p>
-                <form action="<?php echo isset($_SESSION['idusuario']) ? 'carrinhobd.php' : 'login.php'; ?>" method="post">
+                <form action="<?php echo isset($_SESSION['idusuario']) ? 'carrinhobd.php' : '../autenticacao/login.php'; ?>" method="post">
                   <input type="hidden" name="idlivro" value="<?= $livro['idlivro']; ?>">
                   <label for="quantidade">Quantidade:</label>
                   <input type="number" id="quantidade" name="quantidade" value="1" min="1" max="10">
@@ -60,5 +60,5 @@ if (session_status() == PHP_SESSION_NONE) {
 
 </main>
 
-<?php include 'shared/footer.php'; ?>
+<?php include '../shared/footer.php'; ?>
 

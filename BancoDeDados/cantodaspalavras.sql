@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 16-Dez-2023 às 23:41
+-- Tempo de geração: 21-Dez-2023 às 01:43
 -- Versão do servidor: 10.4.28-MariaDB
 -- versão do PHP: 8.2.4
 
@@ -39,7 +39,8 @@ CREATE TABLE `carrinho` (
 --
 
 INSERT INTO `carrinho` (`idcarrinho`, `idusuario`, `idlivro`, `quantidade`) VALUES
-(50, NULL, 24, 1);
+(50, NULL, 24, 1),
+(52, NULL, 25, 1);
 
 -- --------------------------------------------------------
 
@@ -59,7 +60,7 @@ CREATE TABLE `contatos` (
 --
 
 INSERT INTO `contatos` (`idcontato`, `nomecontato`, `emailcontato`, `mensagem`) VALUES
-(6, 'Márcio Delfino', 'marcio@user.com', 'Bom dia !! Adorei o Site !!');
+(8, 'User Teste', 'teste@teste.com', 'Neste Campo aparecem os contatos dos usuários para com o administrador.');
 
 -- --------------------------------------------------------
 
@@ -93,7 +94,8 @@ INSERT INTO `livros` (`idlivro`, `nomelivro`, `nomeautor`, `descricao`, `preco`,
 (30, 'Diário de uma Mãeconheira', 'Maíra Castanho', 'Mães também trepam, chapam e gozam a vida. Erram, se decepcionam, sacodem a poeira e dão a volta por cima. Passam perrengue, choram, riem, desistem e insistem. Mães não são santas. Mães são mulheres e continuam sendo mulheres depois de parir. Reveja seus conceitos sobre as mães, abra sua mente e entre de cabeça nas crônicas no maior estilo beat da vida de Maíra Castanheiro', 79.99, 'Prosa', 'assets/img/diario-de-uma-mae1-ddba6a3e2d36966aa616699926075608-1024-1024.webp'),
 (31, 'Amazônia, Lendas e Mitos', 'Ararê Marrocos', 'Este livro reúne uma pequena descrição de 20 lendas amazônicas ilustradas por belas xilogravuras. As lendas aqui reunidas resultam de pesquisas de campo realizadas de 1995. Ararê visitou diversas localidades no interior da Amazônia para ouvir de seus habitantes as histórias fantásticas que se perpetuaram no imaginário popular e integram a cultura popular da região', 34.99, 'Folclore', 'assets/img/amazonia-lendas-e-mitos-xilogravuras1-58c7e271e65fb8165416523006565760-1024-1024.webp'),
 (33, 'Trama das Águas', 'Vários', 'Este livro-trama traz o trabalho de 57 mulheres que expõem em prosa e verso atravessamentos entre gênero, classe, raça, violência, território e afetos. São contos, crônicas e poemas de autoras contemporâneas que mostram a pluralidade e a riqueza da produção literária do estado do Pará', 49.99, 'Contos, Mulheres', 'assets/img/img0491-93cb57ea6bb1c25fc516439007571660-480-0.jpg'),
-(34, 'Livro de Marena', 'Vicente Salles', 'Acompanho-o desde 4 de janeiro de 1964, quando me pediu em namoro. A 15 de fevereiro de 1964 me pediu em noivado, quando me ofertou \"Livro de Marena\". Nossas vidas se uniram num ideal de amor e respeito, lutando pela igualdade social através da pesquisa da história e outros assuntos do nosso país, que dentro dos meus limites o ajudo. Decidi acrescentar ao Livro de Marena o poema \"15 cartas menores para Beatriz\". ', 29.99, 'Poesia', 'assets/img/livro-de-marena1-baa36a4fd0ac481d2716162634297295-480-0.webp');
+(34, 'Livro de Marena', 'Vicente Salles', 'Acompanho-o desde 4 de janeiro de 1964, quando me pediu em namoro. A 15 de fevereiro de 1964 me pediu em noivado, quando me ofertou \"Livro de Marena\". Nossas vidas se uniram num ideal de amor e respeito, lutando pela igualdade social através da pesquisa da história e outros assuntos do nosso país, que dentro dos meus limites o ajudo. Decidi acrescentar ao Livro de Marena o poema \"15 cartas menores para Beatriz\". ', 29.99, 'Poesia', 'assets/img/livro-de-marena1-baa36a4fd0ac481d2716162634297295-480-0.webp'),
+(35, 'O Senhor dos Aneis: A Sociedade do Anel', 'J. R. R. Tolkien', 'The Fellowship of the Ring é o primeiro volume da trilogia O Senhor dos Anéis, escrita pelo professor e filólogo britânico J. R. R. Tolkien. É seguido de As Duas Torres e O Retorno do Rei. Foi publicado originalmente em 29 de julho de 1954 no Reino Unido', 49.99, 'Ficção, Fantasia', 'assets/img/senhoraneis.jpg');
 
 -- --------------------------------------------------------
 
@@ -115,7 +117,7 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`idusuario`, `nomeusuario`, `email`, `senha`, `gerente`) VALUES
 (1, 'Admin', 'super@admin.com', '21232f297a57a5a743894a0e4a801fc3', 1),
-(16, 'Márcio Delfino', 'marcio@user.com', '1b150854805cbe12194c8dbc55c900cd', 0);
+(23, 'User Teste', 'teste@teste.com', '698dc19d489c4e4db73e28a713eab07b', 0);
 
 --
 -- Índices para tabelas despejadas
@@ -155,25 +157,25 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `carrinho`
 --
 ALTER TABLE `carrinho`
-  MODIFY `idcarrinho` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `idcarrinho` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT de tabela `contatos`
 --
 ALTER TABLE `contatos`
-  MODIFY `idcontato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idcontato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `livros`
 --
 ALTER TABLE `livros`
-  MODIFY `idlivro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `idlivro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Restrições para despejos de tabelas

@@ -1,6 +1,6 @@
 <?php
 
-require 'src/conexao-bd.php';
+require('conexao-bd.php');
 
 class Usuario{
 
@@ -108,8 +108,5 @@ class Usuario{
         $sql->bindValue("idusuario", $idUsuario);
         $sql->execute();
     }
-
-
 }
-
 ?>

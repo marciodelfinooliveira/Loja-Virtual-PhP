@@ -1,6 +1,6 @@
 <?php
-require 'src/conexao-bd.php';
-require 'Usuario.class.php';
+require '../src/conexao-bd.php';
+require '../src/Usuario.class.php';
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -30,8 +30,8 @@ if (session_status() == PHP_SESSION_NONE) {
 
 ?>
 
-<?php include 'shared/header.php'; ?>
-<link href="assets/dist/css/styles_busca.css" rel="stylesheet">
+<?php include '../shared/header.php'; ?>
+<link href="../assets/dist/css/styles_busca.css" rel="stylesheet">
 
 <main>
 
@@ -42,8 +42,8 @@ if (session_status() == PHP_SESSION_NONE) {
                 <?php foreach ($livrosEncontrados as $livro): ?>
                     <div class="col-md-3">
                         <div class="card shadow-sm">
-                            <a href="detalhes_livro.php?id=<?= $livro['idlivro']; ?>" style="text-decoration: none; color: inherit;">
-                                <img src="<?= $livro["imagem"]; ?>" class="card-img-top">
+                            <a href="detalheslivro.php?id=<?= $livro['idlivro']; ?>" style="text-decoration: none; color: inherit;">
+                                <img src="<?= "../" . $livro["imagem"]; ?>" class="card-img-top">
                                 <div class="card-body">
                                     <span class="card-price"><?= "R$ " . $livro["preco"]; ?></span>
                                     <a href="detalheslivro.php?id=<?= $livro['idlivro']; ?>" class="btn btn-sm btn-outline-secondary btn-details">Detalhes</a>
@@ -67,7 +67,7 @@ if (session_status() == PHP_SESSION_NONE) {
                     <div class="col-md-3">
                         <div class="card shadow-sm">
                             <a href="detalheslivro.php?id=<?= $livro['idlivro']; ?>" style="text-decoration: none; color: inherit;">
-                                <img src="<?= $livro["imagem"]; ?>" class="card-img-top">
+                                <img src="<?= "../" . $livro["imagem"]; ?>" class="card-img-top">
                                 <div class="card-body">
                                     <span class="card-price"><?= "R$ " . $livro["preco"]; ?></span>
                                     <a href="detalheslivro.php?id=<?= $livro['idlivro']; ?>" class="btn btn-sm btn-outline-secondary btn-details">Detalhes</a>
@@ -81,4 +81,4 @@ if (session_status() == PHP_SESSION_NONE) {
     </div>
 </main>
 
-<?php include 'shared/footer.php'; ?>
+<?php include '../shared/footer.php'; ?>

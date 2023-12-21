@@ -83,7 +83,7 @@
 
                 echo '
                     <a href="../gerencia/admin.php" class="navbar-brand d-flex align-items-center">
-                    <strong>Canto das Palavras</strong>
+                        <strong>Canto das Palavras</strong>
                     </a>
                 ';
 
@@ -93,7 +93,7 @@
                     <a href="../index.php" class="navbar-brand d-flex align-items-center">
                     <strong>Canto das Palavras</strong>
                     </a>
-                    <form class="form-inline" action="buscar.php" method="GET">
+                    <form class="form-inline" action="../clientes/buscar.php" method="GET">
                         <div class="input-group">
                             <input class="form-control" type="buscar" placeholder="Buscar" aria-label="buscar" name="query">
                             <div class="input-group-append" style="margin-left: 10px;">
@@ -109,7 +109,7 @@
                 <a href="../index.php" class="navbar-brand d-flex align-items-center">
                 <strong>Canto das Palavras</strong>
                 </a>
-                <form class="form-inline" action="buscar.php" method="GET">
+                <form class="form-inline" action="../clientes/buscar.php" method="GET">
                     <div class="input-group">
                         <input class="form-control" type="buscar" placeholder="Buscar" aria-label="buscar" name="query">
                         <div class="input-group-append" style="margin-left: 10px;">
@@ -136,7 +136,7 @@
                         <a class="nav-link btn btn-outline-light" href="cadastrousuarioadm.php">Adicionar Usuário</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-outline-light" href="../logout.php">Logout</a>
+                        <a class="nav-link btn btn-outline-light" href="../autenticacao/logout.php">Logout</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link btn btn-outline-light" href="admin.php">Gerenciamento da Loja</a>
@@ -146,16 +146,16 @@
 
                     echo '
                     <li class="nav-item">
-                        <a class="nav-link btn btn-outline-light" href="logout.php">Logout</a>
+                        <a class="nav-link btn btn-outline-light" href="../autenticacao/logout.php">Logout</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-outline-light" href="carrinho.php">Carrinho</a>
+                        <a class="nav-link btn btn-outline-light" href="../clientes/carrinho.php">Carrinho</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-outline-light" href="contato.php">Contato</a>
+                        <a class="nav-link btn btn-outline-light" href="../clientes/contato.php">Contato</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-outline-light" href="sobre.php">Sobre</a>
+                        <a class="nav-link btn btn-outline-light" href="../clientes/sobre.php">Sobre</a>
                     </li>
                     ';
                 }
@@ -164,13 +164,13 @@
 
             echo '
                 <li class="nav-item">
-                <a class="nav-link btn btn-outline-light" href="login.php">Login</a>
+                <a class="nav-link btn btn-outline-light" href="../autenticacao/login.php">Login</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link btn btn-outline-light" href="cadastrousuario.php">Cadastro</a>
+                <a class="nav-link btn btn-outline-light" href="../clientes/cadastrousuario.php">Cadastro</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link btn btn-outline-light" href="sobre.php">Sobre</a>
+                <a class="nav-link btn btn-outline-light" href="../clientes/sobre.php">Sobre</a>
                 </li>
             ';
             }

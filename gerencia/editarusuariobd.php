@@ -10,7 +10,7 @@ if (isset($_GET['id'])) {
             $stmt = $pdo->prepare($query);
             $stmt->bindParam(':nomeusuario', $_POST['nomeusuario']);
             $stmt->bindParam(':email', $_POST['email']);
-            $stmt->bindParam(':senha', $_POST['senha']);
+            $stmt->bindParam(':senha', md5($_POST['senha']));
             $stmt->bindParam(':gerente', $_POST['gerente']);
             $stmt->bindParam(':id', $idusuario);
             $stmt->execute();

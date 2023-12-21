@@ -1,7 +1,7 @@
 <?php
 
 require '../src/conexao-bd.php';
-require '../Usuario.class.php';
+require '../src/Usuario.class.php';
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();

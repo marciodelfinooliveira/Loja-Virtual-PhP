@@ -1,7 +1,7 @@
 <?php
 
-require 'src/conexao-bd.php';
-require 'Usuario.class.php';
+require '../src/conexao-bd.php';
+require '../src/Usuario.class.php';
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bindParam(':senha', md5($senha));
     try {
         $stmt->execute();
-        header("Location: login.php");
+        header("Location: ../autenticacao/login.php");
         echo "Dados inseridos com sucesso!";
     } catch (PDOException $e) {
         echo "Erro ao inserir dados: " . $e->getMessage();

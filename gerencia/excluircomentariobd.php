@@ -1,7 +1,7 @@
 <?php
     
     require '../src/conexao-bd.php';
-    require '../Usuario.class.php';
+    require '../src/Usuario.class.php';
     
     $contato = isset($_GET['id']) ? $_GET['id'] : null;
 

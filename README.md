@@ -27,6 +27,8 @@
 > SuperAdmin: O SuperAdmin é o usuário que tem acesso a todas as funcionalidades do sistema, segue abaixo as credênciais do SuperAdmin:
 
 ### Admin: 
-|Nome do Usuario|Email|Senha|
-| -------- | -------- | -------- |
-|Admin|super@admin.com|admin|
+|Nome do Usuario|Email|Senha|Direitos|
+| -------- | -------- | -------- | -------- |
+|Admin|super@admin.com|admin|Gerente|
+|Teste|teste@teste.com|teste|Usuário|
+

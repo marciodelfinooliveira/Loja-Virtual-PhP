@@ -1,7 +1,7 @@
 <?php
 
-require 'src/conexao-bd.php';
-require 'Usuario.class.php';
+require '../src/conexao-bd.php';
+require '../src/Usuario.class.php';
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bindParam(':mensagem', $mensagem);
     try {
         $stmt->execute();
-        header("Location: index.php");
+        header("Location: ../index.php");
     } catch (PDOException $e) {
         echo "Erro ao inserir dados: " . $e->getMessage();
     }

@@ -1,6 +1,5 @@
 <?php
 
-define('IMAGE_PATH', 'assets/img/');
 require_once('src/conexao-bd.php');
 
 $sql = 'SELECT idlivro, nomelivro, nomeautor, descricao, preco, tema, imagem FROM livros';
@@ -22,7 +21,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 ?>
 
-<?php include 'shared/header.php'; ?>
+<?php include('shared/header.php'); ?>
 <link href="assets/dist/css/styles_index.css" rel="stylesheet">
 
 <main>
@@ -34,11 +33,11 @@ if (session_status() == PHP_SESSION_NONE) {
         <?php foreach($livros as $livro): ?>
           <div class="col-md-3">
             <div class="card shadow-sm">
-                <a href="detalhes_livro.php?id=<?= $livro['idlivro']; ?>" style="text-decoration: none; color: inherit;">
+                <a href="clientes/detalheslivro.php?id=<?= $livro['idlivro']; ?>" style="text-decoration: none; color: inherit;">
                     <img src="<?= $livro["imagem"]; ?>" class="card-img-top">
                     <div class="card-body">
                         <span class="card-price"><?= "R$ " . $livro["preco"]; ?></span>
-                        <a href="detalheslivro.php?id=<?= $livro['idlivro']; ?>" class="btn btn-sm btn-outline-secondary btn-details">Detalhes</a>
+                        <a href="clientes/detalheslivro.php?id=<?= $livro['idlivro']; ?>" class="btn btn-sm btn-outline-secondary btn-details">Detalhes</a>
                     </div>
                 </a>
             </div>

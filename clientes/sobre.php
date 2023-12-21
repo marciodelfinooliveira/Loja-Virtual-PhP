@@ -1,8 +1,6 @@
 <?php
 
-define("IMAGE_PATH", "assets/img/");
-
-require_once('src/conexao-bd.php');
+require_once('../src/conexao-bd.php');
 
 if (session_status() == PHP_SESSION_NONE) {
   session_start();
@@ -10,7 +8,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 ?>
 
-<?php include 'shared/header.php'; ?>
+<?php include '../shared/header.php'; ?>
 
 <main>
 
@@ -32,4 +30,4 @@ if (session_status() == PHP_SESSION_NONE) {
 
 </main>
 
-<?php include 'shared/footer.php'; ?>
+<?php include '../shared/footer.php'; ?>

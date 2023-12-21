@@ -1,6 +1,6 @@
 <?php
-require 'src/conexao-bd.php';
-require 'Usuario.class.php';
+require '../src/conexao-bd.php';
+require '../src/Usuario.class.php';
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -24,7 +24,7 @@ if(isset($_POST['limparcarrinho'])) {
   $stmtDelete->bindParam(':idusuario', $idusuario);
   $stmtDelete->execute();
 
-  header("Location: index.php");
+  header("Location: ../index.php");
   exit();
 }
 
@@ -62,7 +62,7 @@ if (isset($_POST['idlivro']) && isset($_POST['removerLivro'])) {
 
 ?>
 
-<?php include 'shared/header.php'; ?>
+<?php include '../shared/header.php'; ?>
 
 <main>
 
@@ -124,4 +124,4 @@ if (isset($_POST['idlivro']) && isset($_POST['removerLivro'])) {
 
 </main>
 
-<?php include 'shared/footer.php'; ?>
+<?php include '../shared/footer.php'; ?>

@@ -2,8 +2,8 @@
 
 if(isset($_POST['email']) && !empty($_POST['email']) && isset($_POST['senha']) && !empty($_POST['senha'])){
 
-    require('src/conexao-bd.php');
-    require('Usuario.class.php');
+    require('../src/conexao-bd.php');
+    require('../src/Usuario.class.php');
 
     $u = new Usuario();    
     $login = addslashes($_POST['email']);   
@@ -22,7 +22,7 @@ if(isset($_POST['email']) && !empty($_POST['email']) && isset($_POST['senha']) &
             } else {
 
                 $_SESSION['login_success'] = "Bem Vindo !!";
-                header("Location: index.php");
+                header("Location: ../index.php");
             }
         }else{
 

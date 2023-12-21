@@ -1,5 +1,5 @@
 <?php
-require('src/conexao-bd.php');
+require('../src/conexao-bd.php');
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();

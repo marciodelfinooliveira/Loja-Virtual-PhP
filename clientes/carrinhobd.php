@@ -1,7 +1,7 @@
 <?php
 
-require 'src/conexao-bd.php';
-require 'Usuario.class.php';
+require '../src/conexao-bd.php';
+require '../src/Usuario.class.php';
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -37,7 +37,7 @@ if (isset($_POST['idlivro']) && isset($_POST['quantidade'])) {
         $stmtAdicionar->bindParam(':quantidade', $quantidade);
         $stmtAdicionar->execute();
     }
-    header('Location: index.php');
+    header('Location: ../index.php');
 } else {
     echo "ID do livro ou quantidade não foram fornecidos!";
 }
