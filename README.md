@@ -38,5 +38,5 @@
 |Nome do Usuario|Email|Senha|Direitos|
 | -------- | -------- | -------- | -------- |
 |Admin|super@admin.com|admin|Gerente|
-|Teste|teste@teste.com|teste|Usuário|
+|User Teste|teste@teste.com|teste|Usuário|
 
