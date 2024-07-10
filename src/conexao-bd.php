@@ -4,9 +4,9 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-$localhost = "localhost";
-$user = "root";
-$password = "";
+$localhost = "db";
+$user = "marcio";
+$password = "admin";
 $database = "cantodaspalavras";
 
 global $pdo;
